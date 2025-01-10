@@ -1,0 +1,621 @@
+{
+    "searchParameters": {
+        "q": "(inurl:\"meny\" OR inurl:\"kontakt\" OR inurl:\"om-oss\") (\"hemlagad mat\" OR \"lokal restaurang\" OR \"familjeägd\") site:.se -inurl:yelp.com -inurl:tripadvisor.com",
+        "gl": "se",
+        "hl": "sv",
+        "type": "search",
+        "num": 100,
+        "location": "Sweden",
+        "engine": "google"
+    },
+    "organic": [
+        {
+            "title": "En familjeägd restaurang - Restaurang TRAN",
+            "link": "https://www.restaurangtran.se/om-oss",
+            "snippet": "Bakom Restaurang TRAN står kocken Dennis Tran. Drömmen att starta restaurang har funnits sedan 90-talet när han först kom till Sverige som flykting från ...",
+            "position": 1
+        },
+        {
+            "title": "Om oss - Mat Som Hemma Sverige AB",
+            "link": "https://www.matsomhemma.se/17/3/om-oss/",
+            "snippet": "Vår mat är känd för sin autentiska smak. Vi på \"Mat som Hemma\" är specialiserade på näringsrik, hemlagad mat med rötter i det hjärtliga östeuropeiska köket.",
+            "rating": 4.6,
+            "ratingCount": 11,
+            "position": 2
+        },
+        {
+            "title": "Om Oss - Nonnis Vår Grill, Din Glädje",
+            "link": "https://nonnis.se/om-oss/",
+            "snippet": "Välkommen till Nonnís Bar & Kök – en familjeägd restaurang mitt i hjärtat av Göteborg, där mat och gemenskap står i centrum. Efter 12 fantastiska år har vi ...",
+            "position": 3
+        },
+        {
+            "title": "Meny - kött, fisk, fågel, paj, buffé, hemlagad mat",
+            "link": "https://www.restaurangekholmen.se/meny-8218805",
+            "snippet": "Minimum 8 pers. på våra cateringmenyer, gäller förrätt, varmrätt och dessert. Ekholmens sillamacka på rågbröd, ägg, majonnäs, rödlök, tomat och kapris",
+            "position": 4
+        },
+        {
+            "title": "Om Oss | LEGUMES",
+            "link": "https://legumes.se/om-oss",
+            "snippet": "Välkommen till Restaurang legumes. Sedan 2012 har Legumes varit en familjeägd vegetarisk restaurang som förenar smaker från Mellanöstern.",
+            "position": 5
+        },
+        {
+            "title": "Restaurang i Münchenbryggeriet i Sthlm - Restaurang Mynchen",
+            "link": "https://www.restaurangmynchen.se/kontakt",
+            "snippet": "Besök Restaurang Mynchen, vackert belägen i Münchenbryggeriet med parkering i samma hus. Kom & njut av hemlagad mat, läs mer & se fullständig adress här.",
+            "position": 6
+        },
+        {
+            "title": "Om oss - Ekelöfs",
+            "link": "https://www.ekelofs.se/om-oss/",
+            "snippet": "Ekelöfs Mat & Bar är en familjeägd restaurang belägen vid Smögenbryggan på vackra Smögen - välkomna in för att ta del vårt härliga utbud!",
+            "position": 7
+        },
+        {
+            "title": "Kontakt - Restaurang Travmuseet",
+            "link": "https://restaurangtravmuseet.se/kontakt/",
+            "snippet": "Välkommen till oss – en familjerestaurang som serverat hemlagad mat här sedan 1998. RESTAURANG TRAVMUSEET. Telefon: tel. 0573-100 70. Mail: info ...",
+            "position": 8
+        },
+        {
+            "title": "Om Oss - Mezza Beirut",
+            "link": "https://www.mezzabeirut.se/om-oss/",
+            "snippet": "Vi är en familjeägd restaurang som brinner för det libanesiska köket. Våra skickliga kockar har lång erfarenhet och har förfinat sina recept för att erbjuda ...",
+            "position": 9
+        },
+        {
+            "title": "Vår meny - Mat Som Hemma Sverige AB",
+            "link": "https://www.matsomhemma.se/17/6/var-meny/",
+            "snippet": "Vi på \"Mat som Hemma\" är specialiserade på näringsrik, hemlagad mat med rötter i det hjärtliga östeuropeiska köket. Vår mat är känd för sin autentiska smak ...",
+            "rating": 4.6,
+            "ratingCount": 11,
+            "position": 10
+        },
+        {
+            "title": "Om oss - Tuggets Pizzeria!",
+            "link": "http://tuggets.se/sv/om-oss/",
+            "snippet": "Vi är en familjeägd restaurang som bemöter sina gäster som familjemedlemmar! Vi strävar alltid att erbjuda rätter tillagade med färska ingredienser av hög ...",
+            "position": 11
+        },
+        {
+            "title": "Om oss - La Plaza Tapas Bar",
+            "link": "https://laplaza.se/om-oss",
+            "snippet": "La Plaza är en inbjudande och mysig familjeägd restaurang där både stockholmare och besökare kan njuta av smakrika rätter från hela världen. Beläget i ...",
+            "position": 12
+        },
+        {
+            "title": "Om oss - HONGTHAI",
+            "link": "https://hongthai.se/Om-oss/",
+            "snippet": "Vi är en familjeägd och familjedriven thailändsk restaurang som har drivits i samma regi sedan 2002. Vår ambition är att servera autentisk thailändsk mat ...",
+            "position": 13
+        },
+        {
+            "title": "Om oss - Syster O Bror",
+            "link": "https://systerobror.se/restaurang/om-oss/",
+            "snippet": "Syster O Bror är i grunden en familjeägd restaurang som har haft förmånen att verka i vår unika lokal sedan år 2002. Huset är ritat av arkitekten Nils ...",
+            "position": 14
+        },
+        {
+            "title": "Lillplogen Värmdö Om oss",
+            "link": "https://www.lillplogen.se/om-oss/",
+            "snippet": "Lillplogen, Skärgårdsvägen 272, Värmdö. Familjeägd restaurang sedan 1996. Lillplogen är en internationell restaurang och pizzeria, belägen i Hemmesta C, ...",
+            "position": 15
+        },
+        {
+            "title": "Om oss - Toscana Lidingö",
+            "link": "https://www.toscanalidingo.se/om-oss/",
+            "snippet": "Familjeägd restaurang med avslappnad casual vibe. Stort urval av pizzor och jättegott crispy chicken och lasagne ...",
+            "position": 16
+        },
+        {
+            "title": "Om oss. - Maxos Kungsholmen",
+            "link": "https://www.maxos-kungsholmen.se/om-oss",
+            "snippet": "På Maxos serveras egengjord falafel och hummus precis som den serverats i Palestinas gastronomiska hjärta Akko. Vi firar snart 20 år som autentisk, familjeägd ...",
+            "position": 17
+        },
+        {
+            "title": "Restaurang på Söder i Münchenbryggeriet - Restaurang Mynchen",
+            "link": "https://www.restaurangmynchen.se/om-oss",
+            "snippet": "Boka bord på Restaurang Mynchen på Söder! Som en av alla restauranger på Söder är vi den som serverar hemlagad mat i Münchenbryggeriets anrika lokaler.",
+            "position": 18
+        },
+        {
+            "title": "Meny - Väderstad Centralkrog",
+            "link": "https://www.centralkrog.se/meny/",
+            "snippet": "På Väderstad Centralkrog serverar vi hemlagad mat från grunden och med mycket kärlek. Här vill vi att våra gäster ska trivas och känna sig som hemma ...",
+            "position": 19
+        },
+        {
+            "title": "Om oss - Fiskbistron i hötorgshallen - Kajsas Fisk",
+            "link": "https://kajsasfisk.se/om-oss/",
+            "snippet": "Välkommen in till en familjeägd restaurang i äkta saluhallsmiljö. Vår filosofi. God fisk tillagad med kärlek. Att tillaga god fisk är en konst i sig själv ...",
+            "position": 20
+        },
+        {
+            "title": "Om oss | Trattoria Il Trullo",
+            "link": "https://iltrullo.se/om-oss/",
+            "snippet": "TRATTORIA = Italienska för en liten, lokal restaurang. IL TRULLO = ”Trullo-huset”. ”Trullo”-husen, som bara finns i Apulien i södra Italien, är gamla ...",
+            "position": 21
+        },
+        {
+            "title": "Kontakt - Restaurang Ming i Hjo",
+            "link": "https://restaurangminghjo.se/kontakt/",
+            "snippet": "Foto på Restaurang Mings köpdisk som är röd med guldiga mönster i kinesisk stil, gröna. Om Restaurang Ming. Vi är en familjeägd kinarestaurang som har funnits ...",
+            "position": 22
+        },
+        {
+            "title": "Vår meny - Café Rälsen",
+            "link": "https://www.caferalsen.se/var-meny/",
+            "snippet": "130 kr inkl bordsdricka och kaffe. Hemlagad mat med rötterna i husmanskosten, som tagit vägen om det Danska köket och landat i en modern mättande lunch.",
+            "position": 23
+        },
+        {
+            "title": "Om oss - KiddoKitchen",
+            "link": "https://kiddokitchen.se/artiklar/om-oss",
+            "snippet": "Vi på KiddoKitchen vill hjälpa dig att laga mer hemlagad mat, rädda dig ur korv och makaron-träsket som man så lätt hamnar i samt att ge dig tips och råd ...",
+            "position": 24
+        },
+        {
+            "title": "Om oss – Lilys Lounge",
+            "link": "https://www.lilyslounge.se/om-oss/",
+            "snippet": "Salladsbaren. thumbnail_IMG_7507. Asiatisk Sallad Räkor. Föregående. Nästa. OM OSS. EN FAMILJEÄGD LUNCHRESTAURANG I HÄSSLEHOLMS FISKETORG . SE MENY. VÅR POLICY.",
+            "position": 25
+        },
+        {
+            "title": "Om oss - NK-villan Nyköping",
+            "link": "http://www.nkvillan-cafe.se/om-oss/",
+            "snippet": "Om oss. Vi värnar om fina råvaror och god hemlagad mat. Jani Toppinen heter jag & driver sedan 2011 NK-villans Café, Mat & Catering.",
+            "position": 26
+        },
+        {
+            "title": "Om oss - Pa Pa Thai",
+            "link": "https://www.papathai.se/om-oss/",
+            "snippet": "Det handlar inte bara om thaimat. Pa Pa Thai är mer än bara en thairestaurang. Vi är en familjeägd och ...",
+            "position": 27
+        },
+        {
+            "title": "Njut av vår hemlagade meny! - Café Bakgården",
+            "link": "http://www.cafebakgarden.se/html/meny.html",
+            "snippet": "Vi serverar hemlagad mat med färska råvaror av bästa kvalité och har även alternativa rätter för gluten-, laktos-, vegetarisk-, samt vegansk kost. Dagens ...",
+            "position": 28
+        },
+        {
+            "title": "Kontakt - Åkerby herrgård",
+            "link": "https://www.akerbyherrgard.se/kontakt",
+            "snippet": "Vi jobbar för vår mission, värdegrund och passion - \"Det goda livet\" - där personlig service, omtanke, harmoniska miljöer, god vällagad - hemlagad mat och ...",
+            "position": 29
+        },
+        {
+            "title": "Meny - Forenede Care SE",
+            "link": "https://www.forenedecare.se/aldreboende/ashaga/meny/",
+            "snippet": "God och hemlagad mat av egen kock. Måltiderna är en av dagens bästa stunder för många – dofter, smaker och gemenskap. Hos oss tillagas all mat dagligen av ...",
+            "position": 30
+        },
+        {
+            "title": "Om oss - Uppsalas Bästa Sushi Restaurang",
+            "link": "https://www.airestaurang.se/om-oss",
+            "snippet": "Ai Japansk Restaurang är en familjeägd restaurang och har funnits i Uppsala sedan 2011. Ordet \"ai\" betyder kärlek på japanska och för oss symboliserar det ...",
+            "position": 31
+        },
+        {
+            "title": "Om oss - Robacks Pizzeria",
+            "link": "https://www.robackspizzeria.se/om-oss",
+            "snippet": "Vi är en liten familjeägd pizzeria som har funnits på Röbäck i över 30 år. Vi har utvecklat ett framgångsrecept som bygger på att vi alltid använder färska ...",
+            "position": 32
+        },
+        {
+            "title": "Meny - Kello´s",
+            "link": "http://kellos.se/meny/",
+            "snippet": "Take away. Följ oss. Facebook-f Instagram · Boka bord. Om oss. En familjeägd kvarterskrog i Skoftebyn, Trollhättan. Med över 23 år har vi utvecklats och ...",
+            "position": 33
+        },
+        {
+            "title": "Om oss - Vejbystrands Skola och Förskola",
+            "link": "https://www.vejbystrandsskola.se/om-oss/",
+            "snippet": "Många av de förändringar Skolverket vill se i framtiden ingår redan i vår pedagogik. Hemlagad mat av egen kock. I vårt egna kök tillagar vi dagligen den mesta ...",
+            "position": 34
+        },
+        {
+            "title": "Om oss - Vätterleden Holding",
+            "link": "https://vhab.se/om-oss/",
+            "snippet": "Vätterleden är sedan starten en familjeägd koncern, och vi tror att det märks. Både i hur vi tänker och i hur vi agerar. Den inställning som en gång lade ...",
+            "position": 35
+        },
+        {
+            "title": "Svar Kontakt Form KFM - Jönköping - June Express AB",
+            "link": "https://www.juneexpress.se/svar-kontakt-form-kfm",
+            "snippet": "Tack för din förfrågan, vi återkommer inom kort - JUNE EXPRESS AB. Familjeägd flyttfirma i Jönköping med trygghet och personlig service sedan 1965 ...",
+            "position": 36
+        },
+        {
+            "title": "En familjeägd koncern - Conradzons",
+            "link": "https://conradzons.se/om-oss/",
+            "snippet": "Vi är en familjeägd koncern som idag består av Grönsaksfabriken, Västerbotten Potatis och Conradzons Fastigheter. Vårt ursprung som odlare och producent i ...",
+            "position": 37
+        },
+        {
+            "title": "Om oss - Trako",
+            "link": "https://trako.se/om-oss/",
+            "snippet": "TMT Malinen förvärvar Trailerkomponenter AB. 2018. Trako får ny ägare, Axel Johnson International, en svensk familjeägd industrikoncern med mer än 90 företag i ...",
+            "position": 38
+        },
+        {
+            "title": "Om Oss - Pulsen Group",
+            "link": "https://pulsen.se/om-oss/",
+            "snippet": "Pulsen Group är en familjeägd bolagskoncern. Vi utvecklar företag baserat på insikterna från snart 60 år av eget, framgångsrikt entreprenörskap. Flera av ...",
+            "position": 39
+        },
+        {
+            "title": "Meny - Forenede Care SE",
+            "link": "https://www.forenedecare.se/aldreboende/bokhojden/meny/",
+            "snippet": "God och hemlagad mat. Måltiderna är en av dagens bästa stunder för många – dofter, smaker och gemenskap. Lunch och kvällsmat tillagas på Åshaga kök av kock ...",
+            "position": 40
+        },
+        {
+            "title": "OM Timjan | Våra värden | Flahult 2, Nydala, Vrigstad",
+            "link": "https://www.timjan.se/om-oss",
+            "snippet": "Om oss & Vår ambition. Hos Timjan hittar du riktig hemlagad mat med närproducerade ingredienser. Karl Oscar och Christina som är våra kockar bygger härliga ...",
+            "position": 41
+        },
+        {
+            "title": "Om oss - Haga Förskolor",
+            "link": "https://www.hagaforskolor.se/haga-forskolor/om-oss",
+            "snippet": "Haga Förskolor AB ingår i Hagaföretagen, som är en liten familjeägd företagsgrupp i Östergötland med flera verksamheter inom förskola, fritids, ridskola, social ...",
+            "position": 42
+        },
+        {
+            "title": "Om oss - Mared SustainTech",
+            "link": "https://www.maredsustaintech.se/om-oss/",
+            "snippet": "Mared Group är en familjeägd koncern med bas i Huskvarna men har även en enhet i Tidaholm. Resan startade på 60-talet och idag är vi fem bolag med ...",
+            "position": 43
+        },
+        {
+            "title": "ELE Group | En Träkoncern Att Växa Med | Om Oss",
+            "link": "https://www.elegroup.se/om-oss/",
+            "snippet": "ELE är en svensk familjeägd träkoncern som verkar på en internationell marknad. Företaget förvaltar skog samt tillverkar sågade trävaror från gran och fura.",
+            "position": 44
+        },
+        {
+            "title": "Om oss - Sundsörn restaurang Brygghuset",
+            "link": "https://www.restaurangbrygghuset.se/om-oss/",
+            "snippet": "Här serveras hemlagad mat med stor omsorg och hjärta, precis som Kerstin och Olof Abrahamsson tänkte sig då de tog dem först spadtagen i ...",
+            "date": "17 sep. 2024",
+            "position": 45
+        },
+        {
+            "title": "Om oss - Tage & Söner",
+            "link": "https://www.tageochsoner.se/om-oss/",
+            "snippet": "Tage & Söner är en familjeägd företagsgrupp med verksamhet inom byggentreprenad, byggservice och fastighetsförvaltning. Vi har en stark och lokal förankring ...",
+            "position": 46
+        },
+        {
+            "title": "Om oss Gamla stan - Restaurang Kryp In",
+            "link": "https://restaurangkrypin.se/om-oss-gamla-stan",
+            "snippet": "Vår restaurang erbjuder god hemlagad mat i en rustik men mysig och modern atmosfär. Restaurangen ligger belägen på Prästgatan som finns innanför Stockholms ...",
+            "position": 47
+        },
+        {
+            "title": "Hållbarhet ur flera perspektiv - Björkäng Vägkrog i Varberg",
+            "link": "https://www.bjorkangvagkrog.se/om-oss/106/Hallbarhet_ur_flera_perspektiv",
+            "snippet": "Vi är även helt självförsörjande på bröd från vårt eget hembageri. Genom att använda lokala produkter av kvalitet och erbjuda bra hemlagad mat strävar vi både ...",
+            "position": 48
+        },
+        {
+            "title": "Meny - Café Äpplet",
+            "link": "http://www.cafeapplet.se/meny/",
+            "snippet": "Meny. På cafét serverar vi hemlagad mat, mestadels från ekologiska råvaror. Menyn varierar, hemsidan visar inriktning. Till en början har vi ...",
+            "position": 49
+        },
+        {
+            "title": "Om oss - Nordic Polytech Group",
+            "link": "https://new.npgroup.se/om-oss/",
+            "snippet": "Nordic Polytech Group är en del av Söderbergföretagen; en familjeägd koncern inom industri och teknikhandel. Vi investerar i nischade marknadsledare och ...",
+            "position": 50
+        },
+        {
+            "title": "Kontakt - Norrby Golf",
+            "link": "https://norrbygolf.se/om-oss/kontakt/",
+            "snippet": "En familjeägd Golfbana sedan 1994 i hjärtat av Sörmland. 1 timme från Stockholm, mitt emellan Mariefred och Strängnäs, hittar du mälardalens trevligaste ...",
+            "position": 51
+        },
+        {
+            "title": "Stockholmsbaserad byggentreprenör med 16 anställda - Omhus AB",
+            "link": "https://omhus.se/om-oss/",
+            "snippet": "Omhus AB är en Stockholmsbaserad, familjeägd byggentreprenad. Vi åtar oss uppdrag från såväl privatpersoner som företag och har den kunskap och erfarenhet ...",
+            "position": 52
+        },
+        {
+            "title": "Om oss - Enskede Värdshus",
+            "link": "https://www.enskedevardshus.se/om-oss/",
+            "snippet": "Vi minns och saknar grundaren Drago Avramovic 1937-2021. Enskede Värdshus är en familjeägd restaurang som erbjuder lantlig miljö i utkanten av ...",
+            "position": 53
+        },
+        {
+            "title": "Om oss – Liljedahl Group AB",
+            "link": "https://www.liljedahlgroup.se/om-oss/",
+            "snippet": "Så skapar vi förutsättningar för tillväxt. Liljedahl Group är en familjeägd bolagsgrupp med fokus på värdeskapande affärsutveckling av innehaven. Ägarbolagets ...",
+            "position": 54
+        },
+        {
+            "title": "Om oss - Bushuset",
+            "link": "https://bushuset.webnode.se/om-oss/",
+            "snippet": "Vi följer och arbetar utifrån Läroplan för förskolan, Lpfö18, och skollagen. Hemlagad mat. Mitt i huset ligger det öppna köket. Här jobbar vår egen kokerska ...",
+            "position": 55
+        },
+        {
+            "title": "Om oss - Läktarproffs Fastighet",
+            "link": "https://www.laktarproffsfast.se/om-oss",
+            "snippet": "Läktarproffs Fastighets AB är en familjeägd fastighetskoncern som äger, förvaltar och utvecklar fastigheter i Norra Sverige. Bolaget erbjuder kommersiella ...",
+            "position": 56
+        },
+        {
+            "title": "LK Gruppen - LK Armatur",
+            "link": "https://www.lkarmatur.se/sv/om-oss/lk-group/",
+            "snippet": "LK är en familjeägd handels- och produktionskoncern som verkar globalt inom VVS-området. Koncernen har idag cirka 400 anställda och är marknadsledande i ...",
+            "position": 57
+        },
+        {
+            "title": "Om oss – Wasaplatsens Montessoriförskola",
+            "link": "https://www.wasaplatsen.se/om-oss/",
+            "snippet": "För närvarande är vi 26 barn på Bamsarna och 14 barn på Knattarna. Vi kan erbjuda god kvalité i form av hemlagad mat från grunden i förskolans egna kök, där vår ...",
+            "position": 58
+        },
+        {
+            "title": "Lotus Hotel Group: Hotell i Göteborg, Varberg & Skövde | Spa ...",
+            "link": "https://www.hoteleggers.se/om-oss/lotus-hotel-group/",
+            "snippet": "Lotus Hotel Group är en liten familjeägd hotellgrupp som verkar i lokalt starka, historiska och spännande miljöer. Hos oss finner du ett av Sveriges äldsta ...",
+            "position": 59
+        },
+        {
+            "title": "Om oss - Kolgrill Kalmar",
+            "link": "https://www.kolgrillkalmar.se/om-oss/",
+            "snippet": "Kalmar Kolgrill är en ganska nystartad familjeägd restaurang med ambitionen att erbjuda kolgrillad mat året runt. Vi öppnade våra portar 2015. Att våra ...",
+            "position": 60
+        },
+        {
+            "title": "Meny - Nya Kryddan Lunch Restaurang",
+            "link": "https://nyakryddan.se/meny",
+            "snippet": "DAGENS RÄTT 110:- Hemlagad mat. Inkl. sallad, vatten, lingondricka & kaffe. (avhämtning 99:-)inkl. sallad. Mån-Fre mellan kl 11-16. Vecka 27. Måndag : Kryddans ...",
+            "position": 61
+        },
+        {
+            "title": "Om oss - Pernlos Guldsmedja",
+            "link": "https://pernlos.se/om-oss/",
+            "snippet": "Familjeägd guldsmedja. Pernlos Guldsmedja är en av de äldsta guldsmedsaffärer i Malmö och har funnits sedan 1969. Om Pernlo. Björn föddes 1946 och blev tidigt ...",
+            "position": 62
+        },
+        {
+            "title": "Om oss – Grekiska Grill & Bar",
+            "link": "https://grekiska.se/om-oss/",
+            "snippet": "Det har hänt mycket sedan 1995 då vi fick idén att grilla inomhus i ett öppet kök, och servera grekisk mat på en familjeägd restaurang i Södertälje.",
+            "position": 63
+        },
+        {
+            "title": "Om oss - Martinex Ab",
+            "link": "https://www.martinex.se/om-oss/",
+            "snippet": "Martinex är en finsk, familjeägd koncern, som tillverkar och importerar present- och hushållsartiklar, leksaker, spel, textilier och väskor. Därtill ...",
+            "position": 64
+        },
+        {
+            "title": "Om oss, vår historia - Holméns Kakel & Golv i Töreboda",
+            "link": "https://holmensgolv.se/om-oss/",
+            "snippet": "Om oss på Holméns Kakel & Golv AB är en auktoriserad och certifierad familjeägd golvfirma som verkat i regionen i 27 år. Vår verksamhet riktar sig såväl ...",
+            "position": 65
+        },
+        {
+            "title": "Om Oss - Interflora Abrahamsberg Floristen Bromma",
+            "link": "https://abrahamsbergfloristen.interflora.se/om-oss/",
+            "snippet": "Tack för att ni väljer att stötta oss som en lokal, familjeägd butik. Tillsammans skapar vi vackra minnen och sprider glädje med blommor. Varmt välkomna till ...",
+            "position": 66
+        },
+        {
+            "title": "Om oss - Industrireklam",
+            "link": "https://www.industrireklam.se/om-oss/",
+            "snippet": "Gemensamt för de flesta är att de är verksamma inom industrisegmentet och en del av B2B (business-to-business). *Welandkoncernen är en familjeägd ...",
+            "position": 67
+        },
+        {
+            "title": "Om oss - LK Systems",
+            "link": "https://www.lksystems.se/sv/om-oss/",
+            "snippet": "LK Group. LK är en familjeägd koncern som verkar internationellt inom VVS-branschen. Vi är marknadsledande i Sverige samt har en ökande försäljning av ...",
+            "position": 68
+        },
+        {
+            "title": "Om oss - Enoteca Roma",
+            "link": "https://enotecaroma.se/om-oss/",
+            "snippet": "Välkommen till Enoteca Roma – en italiensk restaurang belägen i Bagaregården, en av Göteborgs mest charmiga stadsdelar. Vi är en familjeägd restaurang med en ...",
+            "position": 69
+        },
+        {
+            "title": "Om Oss | Always! Clean - Din pålitliga städfirma i Gävle",
+            "link": "https://www.alwaysclean.se/sida/om-oss",
+            "snippet": "Välkommen till Always! Clean, din pålitliga städfirma i Gävle med omnejd. Vi är en familjeägd verksamhet, som drivs av mor och dotter. Tillsammans har vi många ...",
+            "position": 70
+        },
+        {
+            "title": "Om Oss Svedab Redovisningsbyrå Sveg",
+            "link": "https://svedabisveg.se/om-oss/",
+            "snippet": "Svedab är en familjeägd redovisningsbyrå och vår verksamhet drivs i egen fastighet i centrala Sveg. Våra kunder finns över hela Härjedalen och även i.",
+            "position": 71
+        },
+        {
+            "title": "Kontakt — Ringströms Begravningsbyrå",
+            "link": "https://www.ringstromsbegravningar.se/kontakt",
+            "snippet": "- en familjeägd byrå i Västerås. Ring till oss. Kontakta oss. Här kan du ställa frågor till oss på Ringströms begravningsbyrå. Du kan även fylla i dina ...",
+            "position": 72
+        },
+        {
+            "title": "Om oss - Skoogs",
+            "link": "https://skoogs.se/om-oss/",
+            "snippet": "Skoogs är en familjeägd koncern med rötterna i Piteå, Norrbotten. Vår verksamhet sträcker sig från bränslen och energi, via hotell och restaurang, till ...",
+            "position": 73
+        },
+        {
+            "title": "HelloFresh veckomeny och matkassar - Spara & få fri frakt 5 gånger",
+            "link": "https://www.hellofresh.se/matkasse/meny",
+            "snippet": "Sedan är det bara att njuta av kvalitativa, färska ingredienser och smarrig hemlagad mat när det passar dig. Middagar med HelloFresh är helt anpassningsbara ...",
+            "position": 74
+        },
+        {
+            "title": "Vår bygghandel - AB Karl Hedin",
+            "link": "https://www.abkarlhedin.se/bygghandel/om-oss/vanliga-fragor/var-bygghandel/",
+            "snippet": "AB Karl Hedin Bygghandel ingår som en del av AB Karl Hedin, som är en familjeägd sågverk-, emballage- och handelskoncern. Läs gärna mer om oss och vår ...",
+            "position": 75
+        },
+        {
+            "title": "Om oss | Montessoriförskolan Pinocchio",
+            "link": "https://www.pinocchio-flen.se/om-oss",
+            "snippet": "All mat på förskolan tillagas från grunden av vår egen husmor. Närheten till köket gör att våra barn får känna doften av nybakt bröd, hemlagad mat samt att de ...",
+            "position": 76
+        },
+        {
+            "title": "Om oss - Mared IndustryTech",
+            "link": "https://www.maredindustrytech.se/om-oss/",
+            "snippet": "Mared Group är en familjeägd koncern med bas i Huskvarna men har även en enhet i Tidaholm. Resan startade på 60-talet och idag är vi fem bolag med ...",
+            "position": 77
+        },
+        {
+            "title": "Om oss - Alen Begravningsbyrå",
+            "link": "https://www.alenbegravningsbyra.se/om-oss/",
+            "snippet": "Alen Begravningsbyrå är en familjeägd byrå som etablerades 2005. För att skapa en större trygghet för er anhöriga strävar vi efter att det är samma person ...",
+            "position": 78
+        },
+        {
+            "title": "Om oss - Babylon Pizzeria Kolgrill",
+            "link": "https://www.babylonpizzeriakolgrill.se/om-oss/",
+            "snippet": "Vi är en familjeägd restaurang med över 20 års erfarenhet av att servera autentisk kolgrillad mat från Mellanöstern. Våra skickliga kockar använder endast ...",
+            "position": 79
+        },
+        {
+            "title": "Om oss - Güntherska",
+            "link": "https://guntherska.se/pages/om-oss",
+            "snippet": "Välkommen till Güntherska Hovkonditori & Schweizeri. Vi är en passionerad familjeägd verksamhet som brinner för att skapa högkvalitativa bakverk och mat ...",
+            "position": 80
+        },
+        {
+            "title": "Om oss - Stavsjö Krog & Kafé",
+            "link": "https://www.stavsjokrog.se/om-oss/index.html",
+            "snippet": "Vi tycker det är viktigt med rena toaletter och fräscha lokaler, snabb service, hemlagad mat och hembakat kaffebröd. Till jul, påsk och midsommar pyntar vi ...",
+            "position": 81
+        },
+        {
+            "title": "Om oss - BOLIST Harås Byggvaror",
+            "link": "https://harasbyggvaror.se/om-oss/",
+            "snippet": "Om oss. Harås Byggvaror är en komplett familjeägd bygg och järnhandel som drivs av femte och fjärde generationen. Vi har i dag två byggvaruhus, ...",
+            "position": 82
+        },
+        {
+            "title": "Mellby Gård i korthet",
+            "link": "https://mellby-gaard.se/om-oss/mellby-gard-i-korthet",
+            "snippet": "Mellby Gård är en familjeägd, långsiktig investerare som månar om att bevara entreprenörsandan i portföljbolagen. Lär känna oss bättre här.",
+            "position": 83
+        },
+        {
+            "title": "Om oss - Veterinären i Vallentuna",
+            "link": "https://veterinarenivallentuna.se/om-oss/",
+            "snippet": "Veterinären i Vallentuna är en familjeägd fristående veterinärklinik, som startades 2013 av Kajsa och Jerker Kihlström i syfte att bygga en trevlig och ...",
+            "position": 84
+        },
+        {
+            "title": "Om oss - IBC Elinstallation",
+            "link": "https://www.ibcelinstallation.se/om-oss/",
+            "snippet": "IBC är en familjeägd minikoncern med ett 50-tal anställda. Vi arbetar och utgår både från Helsingborg och från Höganäs.",
+            "position": 85
+        },
+        {
+            "title": "Boende Mat Fritid, Stora Segerstad naturbrukscentrum",
+            "link": "https://www.rjl.se/StoraSegerstadnaturbrukscentrum/Kontakt/boende-mat-fritid/",
+            "snippet": "Vid Stora Segerstad Naturbrukscentrum erbjuder vi en helhetslösning för våra elever med hemlagad mat, boende och möjligheter till en aktiv fritid.",
+            "position": 86
+        },
+        {
+            "title": "Om oss - Proton Group -",
+            "link": "https://proton.se/om-oss/",
+            "snippet": "Proton är en svensk, familjeägd industrikoncern i tillväxt. Vi investerar långsiktigt i människor, företag och branscher med potential att utvecklas ...",
+            "position": 87
+        },
+        {
+            "title": "Kontakt | Karelycke Bygg AB",
+            "link": "https://www.karelyckebygg.se/kontakt",
+            "snippet": "Om oss. Karelycke Bygg är en småskalig, familjeägd verksamhet som är baserad i Kinna, Marks kommun och verkar främst inom Västra Götaland. ​​​ ...",
+            "position": 88
+        },
+        {
+            "title": "Om oss - Plamex",
+            "link": "https://www.plamex.se/sv/om-oss/",
+            "snippet": "Liljedahl Group är en familjeägd bolagsgrupp med sju helägda innehav: Elcowire Group, Dahren Group, Hörle Wire Group, Pronect, Finnvedens Lastvagnar ...",
+            "position": 89
+        },
+        {
+            "title": "Om oss - AnVa Industries",
+            "link": "https://www.anva.se/om-oss",
+            "snippet": "Bakgrund inom ABB, bl.a. medlem i koncernledningen för ABB Sverige 1988-96 och har därefter som VD och huvudägare byggt upp en familjeägd industrikoncern med ...",
+            "position": 90
+        },
+        {
+            "title": "Om oss | FussNord International Funeral Assistance",
+            "link": "https://www.fussnord.se/om-oss",
+            "snippet": "Vi är stolta över att vara en familjeägd verksamhet, och det återspeglas i varje aspekt av vårt arbete. Våra kundrådgivare, som finns över hela Sverige, är ...",
+            "position": 91
+        },
+        {
+            "title": "Om oss - Jula Hotell",
+            "link": "https://www.julahotell.se/om-oss/",
+            "snippet": "Vår historia. Jula är en familjeägd koncern som idag associeras med allt från retail och fastigheter till finans, logistik, hotell och miljö & ...",
+            "date": "22 apr. 2024",
+            "position": 92
+        },
+        {
+            "title": "Om oss - Forenede Service SE",
+            "link": "https://www.forenedeservice.se/om-oss/",
+            "snippet": "En familjeägd koncern. Forenede Service ingår i Forenede Koncernen som är ett danskt familjeföretag med verksamhet inom såväl Facility service som omsorg.",
+            "position": 93
+        },
+        {
+            "title": "Om oss - Nätstations Alliansen",
+            "link": "https://natstationsalliansen.se/om-oss/",
+            "snippet": "Söderbergföretagen är en familjeägd industrikoncern med dotterbolag inom fyra affärsområden: Komponenter, Elkraft, Infrastruktur och Teknikhandel. Med ...",
+            "position": 94
+        },
+        {
+            "title": "Kontakt - Förskolan Blåbärsstället Förskola i Högstorp, Växjö",
+            "link": "https://blabarsstallet.se/kontakt/",
+            "snippet": "Hos oss finns det plats för cirka 35 barn i åldrarna 1–5 år. Vi finns i en hemlik, grön och lantlig miljö där vi alltid serverar hemlagad mat till barnen. Om du ...",
+            "position": 95
+        },
+        {
+            "title": "Hållbarhet - Mared SustainTech",
+            "link": "https://www.mared.se/atervinning-energi/om-oss/kvalitet-och-miljo/",
+            "snippet": "Mared är en familjeägd koncern där Hållbarhet är en av grundstenarna. Bolaget har funnits sedan 60-talet och vi har alltid arbetat för att vara ett företag ...",
+            "position": 96
+        },
+        {
+            "title": "Om oss - Holfast",
+            "link": "https://holfast.se/om-oss/",
+            "snippet": "HOLFAST AB är en familjeägd distributionskoncern bestående av 4 transportbolag (Godsservice i Karlstad , Beves , Godsservice i Borås) samt ett delägt ...",
+            "position": 97
+        },
+        {
+            "title": "Om oss som driver Levar Hotell i Nordmaling",
+            "link": "https://levarhotell.se/om-oss/",
+            "snippet": "Vårt främsta mål är att varje dag kunna erbjuda våra gäster enastående service, vänligt bemötande och välsmakande hemlagad mat i en unik ...",
+            "date": "15 juni 2023",
+            "position": 98
+        },
+        {
+            "title": "Kontakta oss för byggtjänster i Väst - Åke Ekstrand Byggnads AB",
+            "link": "https://akeekstrand.se/kontakt/",
+            "snippet": "Familjeägd byggfirma med 30 år i branschen. En byggfirma verksam i hela Göteborgsområdet som lägger stor vikt på kvalitet, genuint hantverk och service ...",
+            "position": 99
+        },
+        {
+            "title": "Om oss - Söderbergföretagen",
+            "link": "https://www.soderbergforetagen.se/sv/om-oss/",
+            "snippet": "Söderbergföretagen. Vi är en familjeägd koncern med företag inom industri och teknikhandel. Vi investerar i nischade marknadsledare som vi genom långsiktigt ...",
+            "position": 100
+        }
+    ],
+    "credits": 2
+}
