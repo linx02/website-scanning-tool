@@ -2,6 +2,8 @@ package com.leads.leadsgen.services;
 
 import com.leads.leadsgen.exceptions.CrawlerException;
 import com.leads.leadsgen.models.Asset;
+import com.leads.leadsgen.repositories.AssetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -12,20 +14,49 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class CrawlerService {
+public class CrawlService {
 
     private final HttpClient httpClient;
 
-    public CrawlerService(HttpClient httpClient) {
+    @Autowired
+    private AssetRepository assetRepository;
+
+    @Autowired
+    private SseService sseService;
+
+    public CrawlService(HttpClient httpClient) {
         this.httpClient = httpClient;
+    }
+
+    public void crawlDomains(List<String> domains) {
+        domains.forEach(this::crawlDomain);
+    }
+
+    private void crawlDomain(String domain) {
+        try {
+            sseService.broadcastStatus(domain, "Crawling", Map.of());
+
+            Asset asset = crawl("https://" + domain);
+
+            Set<String> uniqueUrls = new LinkedHashSet<>(asset.getUrls());
+            asset.setUrls(new ArrayList<>(uniqueUrls));
+
+            if (assetRepository.findByDomain(domain).isPresent()) {
+                sseService.broadcastStatus(domain, "Duplicate", Map.of());
+                return;
+            }
+
+            assetRepository.save(asset);
+            sseService.broadcastStatus(domain, "Completed", Map.of("emailsFound", String.valueOf(asset.getEmails().size())));
+        } catch (Exception e) {
+            Asset failedAsset = new Asset(domain, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), null, null);
+            assetRepository.save(failedAsset);
+            sseService.broadcastStatus(domain, "Error", Map.of("error", e.getMessage()));
+        }
     }
 
     public Asset crawl(String url) throws CrawlerException {
         List<String> urls = getUrls(url);
-
-        if (urls.isEmpty()) {
-            System.out.println("No URLs found for domain: " + getDomainFromUrl(url) + ". Scanning only the provided URL.");
-        }
 
         if (!urls.contains(url)) {
             urls.add(url);
@@ -64,39 +95,42 @@ public class CrawlerService {
 
     private List<String> getUrls(String url) {
         List<String> urls = new ArrayList<>();
-        List<String> disallowedUrls = new ArrayList<>();
-
         List<String> sitemapUrls = getSitemap(url);
+
         if (!sitemapUrls.isEmpty() && sitemapUrls.size() <= 20) {
             urls.addAll(sitemapUrls);
         }
 
-        if (sitemapUrls.size() > 20) {
-            System.out.println("Sitemap too large for domain: " + getDomainFromUrl(url));
-        }
-
         if (urls.isEmpty()) {
-            System.out.println("Running link-based crawling for domain: " + getDomainFromUrl(url));
-            List<String> pageLinks = getPageLinks(url);
-            urls.addAll(pageLinks);
+            urls.addAll(getPageLinks(url));
         }
 
-        disallowedUrls = getDisallowedUrls(url);
-
+        List<String> disallowedUrls = getDisallowedUrls(url);
         urls.removeAll(disallowedUrls);
 
         urls.removeIf(url_ -> !getDomainFromUrl(url_).equals(getDomainFromUrl(url)));
 
-        return urls;
+        return deduplicateUrls(urls);
+    }
+
+    private List<String> deduplicateUrls(List<String> urls) {
+        Set<String> uniqueUrls = new LinkedHashSet<>();
+        for (String url : urls) {
+            if (url.endsWith("/")) {
+                uniqueUrls.add(url.substring(0, url.length() - 1));
+            } else {
+                uniqueUrls.add(url);
+            }
+        }
+        return new ArrayList<>(uniqueUrls);
     }
 
     private List<String> getSitemap(String url) {
         List<String> sitemapUrls = new ArrayList<>();
-        Set<String> visitedSitemaps = new HashSet<>(); // To prevent cycles in recursion
-        Queue<String> sitemapQueue = new LinkedList<>(); // For managing recursive sitemap processing
+        Set<String> visitedSitemaps = new HashSet<>();
+        Queue<String> sitemapQueue = new LinkedList<>();
 
         try {
-            // Try to fetch the sitemap URL from robots.txt
             String robotsUrl = url + "/robots.txt";
             String robotsContent = httpClient.get(robotsUrl);
 
@@ -104,20 +138,15 @@ public class CrawlerService {
                     .filter(line -> line.startsWith("Sitemap:"))
                     .map(line -> line.split("Sitemap:")[1].trim())
                     .findFirst()
-                    .orElse(url + "/sitemap.xml"); // Fallback to /sitemap.xml
+                    .orElse(url + "/sitemap.xml");
 
             sitemapQueue.add(initialSitemapUrl);
-
         } catch (Exception e) {
-            System.err.println("Error fetching robots.txt: " + e.getMessage() + ". Falling back to default sitemap.xml.");
             sitemapQueue.add(url + "/sitemap.xml");
         }
 
-        // Process the sitemaps recursively using the queue
         while (!sitemapQueue.isEmpty()) {
             String currentSitemapUrl = sitemapQueue.poll();
-
-            // Avoid re-processing the same sitemap
             if (visitedSitemaps.contains(currentSitemapUrl)) {
                 continue;
             }
@@ -126,7 +155,6 @@ public class CrawlerService {
             try {
                 String sitemapContent = httpClient.get(currentSitemapUrl);
 
-                // Parse sitemap content
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 org.w3c.dom.Document document = builder.parse(new ByteArrayInputStream(sitemapContent.getBytes()));
@@ -134,7 +162,6 @@ public class CrawlerService {
                 org.w3c.dom.NodeList locNodes = document.getElementsByTagName("loc");
                 for (int i = 0; i < locNodes.getLength(); i++) {
                     String loc = locNodes.item(i).getTextContent();
-
                     if (loc.endsWith(".xml")) {
                         sitemapQueue.add(loc);
                     } else {
@@ -142,7 +169,7 @@ public class CrawlerService {
                     }
                 }
             } catch (Exception e) {
-                System.err.println("Error fetching or parsing sitemap: " + currentSitemapUrl + ". Skipping... " + e.getMessage());
+                System.err.println("Error processing sitemap: " + currentSitemapUrl + ". Skipping...");
             }
         }
 
@@ -178,7 +205,7 @@ public class CrawlerService {
                 links.add(link);
             }
         } catch (Exception e) {
-            System.err.println("Error fetching page links for URL: " + url + ". " + e.getMessage());
+            System.err.println("Error fetching page links for URL: " + url);
         }
         return links;
     }
@@ -187,9 +214,9 @@ public class CrawlerService {
         Set<String> emails = new HashSet<>();
         Pattern emailPattern = Pattern.compile("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
         for (String html : htmlContents.values()) {
-                Matcher matcher = emailPattern.matcher(html);
-                while (matcher.find()) {
-                    emails.add(matcher.group());
+            Matcher matcher = emailPattern.matcher(html);
+            while (matcher.find()) {
+                emails.add(matcher.group());
             }
         }
         return emails;
@@ -197,14 +224,19 @@ public class CrawlerService {
 
     private Set<String> getPhones(Map<String, String> htmlContents) {
         Set<String> phones = new HashSet<>();
-        Pattern phonePattern = Pattern.compile("\\+46\\s?(?:\\(0\\))?[1-9]\\d{1,2}[-.\\s]?\\d{2,3}[-.\\s]?\\d{2,3}[-.\\s]?\\d{2,4}|0[1-9]\\d{1,2}[-.\\s]?\\d{2,3}[-.\\s]?\\d{2,3}[-.\\s]?\\d{2,4}");
+        Pattern phonePattern = Pattern.compile(
+                "(?:\\+\\d{1,3}[-.\\s]?)?" +          // Optional international code, e.g., +46
+                        "(?:\\(\\d{1,4}\\)|\\d{1,4})?" +      // Optional area code in parentheses
+                        "\\d{3,4}[-.\\s]?\\d{2,4}[-.\\s]?\\d{2,4}" // Main phone number pattern
+        );
         for (String html : htmlContents.values()) {
-                Matcher matcher = phonePattern.matcher(html);
-                while (matcher.find()) {
-                    phones.add(matcher.group());
-                }
+            Matcher matcher = phonePattern.matcher(html);
+            System.out.println("Processing html: " + html);
+            while (matcher.find()) {
+                phones.add(matcher.group());
+                System.out.println("Phone found: " + matcher.group());
             }
-
+        }
         return phones;
     }
 

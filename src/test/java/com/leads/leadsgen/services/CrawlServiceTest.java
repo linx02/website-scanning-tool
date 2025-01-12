@@ -11,15 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class CrawlerServiceTest {
+public class CrawlServiceTest {
 
     private HttpClient httpClient;
-    private CrawlerService crawlerService;
+    private CrawlService crawlService;
 
     @BeforeEach
     void setUp() {
         httpClient = mock(HttpClient.class);
-        crawlerService = new CrawlerService(httpClient);
+        crawlService = new CrawlService(httpClient);
     }
 
     private void assertAsset(Asset asset, Asset expectedAsset) {
@@ -100,8 +100,8 @@ public class CrawlerServiceTest {
         // Success: Reachable robots.txt, Sitemap mentioned but no link, valid sitemap
         // Success: Reachable robots.txt, no sitemap mentioned, valid sitemap
 
-        assertAsset(crawlerService.crawl("https://example2.com"), expectedAsset2);
-        assertAsset(crawlerService.crawl("https://example3.com"), expectedAsset3);
+        assertAsset(crawlService.crawl("https://example2.com"), expectedAsset2);
+        assertAsset(crawlService.crawl("https://example3.com"), expectedAsset3);
     }
 
     @Test
@@ -147,8 +147,8 @@ public class CrawlerServiceTest {
         // TODO:
         // Success: Valid robots.txt, valid sitemap.xml but invalid & unreachable external sitemaps
 
-        assertAsset(crawlerService.crawl("https://example5.com"), expectedAsset2);
-        assertAsset(crawlerService.crawl("https://example6.com"), expectedAsset3);
+        assertAsset(crawlService.crawl("https://example5.com"), expectedAsset2);
+        assertAsset(crawlService.crawl("https://example6.com"), expectedAsset3);
     }
 
     @Test
@@ -177,7 +177,7 @@ public class CrawlerServiceTest {
         // TODO:
         // Success: Valid robots.txt, valid sitemap, invalid HTML content
 
-        assertAsset(crawlerService.crawl("https://example8.com"), expectedAsset2);
+        assertAsset(crawlService.crawl("https://example8.com"), expectedAsset2);
     }
 
 }

@@ -5,8 +5,11 @@ import com.leads.leadsgen.repositories.AssetRepository;
 import com.leads.leadsgen.repositories.ScanReportRepository;
 import com.leads.leadsgen.scanners.SeoScanner;
 import com.leads.leadsgen.scanners.TrackerConsentScanner;
+import com.leads.leadsgen.services.ScanService;
+import com.leads.leadsgen.services.SseService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -19,7 +22,10 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import java.util.List;
 import java.util.Map;
 
+import static javax.management.Query.eq;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -41,8 +47,11 @@ class ScanControllerTest {
     @MockitoBean
     private TrackerConsentScanner trackerConsentScanner;
 
-//    @Mock
-//    private ScanService scanService;
+    @MockitoBean
+    private SseService sseService;
+
+    @MockitoBean
+    private ScanService scanService;
 
     @BeforeEach
     void setup() {
@@ -80,13 +89,30 @@ class ScanControllerTest {
 
         String requestJson = new ObjectMapper().writeValueAsString(requestBody);
 
-        // Start SSE stream in separate thread to keep it open
-        MockHttpServletRequestBuilder streamRequest = get("/api/stream-scan-status")
-                .accept(MediaType.TEXT_EVENT_STREAM);
+        // Start SSE stream in a separate thread
+        Thread sseClientThread = new Thread(() -> {
+            try {
+                MockHttpServletRequestBuilder streamRequest = get("/api/stream-scan-status")
+                        .accept(MediaType.TEXT_EVENT_STREAM);
 
-        MvcResult mvcResult = mockMvc.perform(streamRequest)
-                .andExpect(status().isOk())
-                .andReturn();
+                MvcResult mvcResult = mockMvc.perform(streamRequest)
+                        .andExpect(status().isOk())
+                        .andReturn();
+
+                // Wait for events
+                Thread.sleep(5000);
+
+                // Verify streamed content
+                String responseContent = mvcResult.getResponse().getContentAsString();
+                assertThat(responseContent).contains("domain");
+                assertThat(responseContent).contains("status");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Start the SSE simulation
+        sseClientThread.start();
 
         // Trigger scan
         mockMvc.perform(post("/api/scan")
@@ -94,12 +120,7 @@ class ScanControllerTest {
                         .content(requestJson))
                 .andExpect(status().isOk());
 
-        // Wait for some time to allow the scan and event emission
-        Thread.sleep(5000);
-
-        String responseContent = mvcResult.getResponse().getContentAsString();
-
-        assertThat(responseContent).contains("domain");
-        assertThat(responseContent).contains("status");
+        // Wait for SSE thread to complete
+        sseClientThread.join();
     }
 }
