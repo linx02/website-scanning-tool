@@ -2,6 +2,8 @@ package com.leads.leadsgen.scanners;
 
 import com.leads.leadsgen.models.Asset;
 import com.leads.leadsgen.models.ScanReport;
+import com.leads.leadsgen.services.CrawlService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.HttpURLConnection;
@@ -13,12 +15,18 @@ import java.util.regex.Pattern;
 @Component
 public class SeoScanner extends Scanner {
 
+    @Autowired
+    private CrawlService crawlService;
+
     public SeoScanner() {
         super("SeoScanner");
     }
 
     @Override
     public ScanReport scan(Asset asset) {
+
+        System.out.println("Scanning SEO for: " + asset.getDomain());
+
         StringBuilder reportBuilder = new StringBuilder();
         Map<String, List<String>> issuesPerUrl = new HashMap<>();
         int totalChecks = 0;
@@ -36,9 +44,23 @@ public class SeoScanner extends Scanner {
             }
         }
 
+        System.out.println("Scanning HTML content...");
+        System.out.println(asset.getHtmlContents());
+
+        if (asset.getHtmlContents() == null) {
+            try {
+                Asset updatedAsset = crawlService.crawl("https://" + asset.getDomain());
+                asset.setHtmlContents(updatedAsset.getHtmlContents());
+            } catch (Exception e) {
+                System.out.println("Error crawling asset: " + asset.getDomain());
+                return new ScanReport("Error crawling asset: " + asset.getDomain(), asset, true);
+            }
+        }
+
         // Scan HTML content
         for (String url : asset.getHtmlContents().keySet()) {
                 String htmlContent = asset.getHtmlContents().get(url);
+
 
                 if (htmlContent != null) {
                     List<String> urlIssues = new ArrayList<>();
@@ -53,6 +75,7 @@ public class SeoScanner extends Scanner {
                 }
         }
 
+        System.out.println("Scanning asset level issues...");
 
         // Check for missing files like robots.txt and sitemap.xml
         List<String> assetLevelIssues = new ArrayList<>();
@@ -63,6 +86,8 @@ public class SeoScanner extends Scanner {
         if (!assetLevelIssues.isEmpty()) {
             issuesPerUrl.put(asset.getDomain(), assetLevelIssues);
         }
+
+        System.out.println("Calculating score...");
 
         int totalScore = calculateScore(totalChecks, wellOptimizedChecks);
 
@@ -82,6 +107,8 @@ public class SeoScanner extends Scanner {
         }
 
         boolean flagged = totalScore < 70;
+
+        System.out.println("SEO scan complete for: " + asset.getDomain());
 
         return new ScanReport(reportBuilder.toString(), asset, flagged);
     }

@@ -51,6 +51,8 @@ public class ScanService {
                     default -> throw new IllegalArgumentException("Invalid scanner: " + scanner);
                 };
 
+                System.out.println("Scan report: " + report);
+
                 scanReportRepository.save(report);
             }
 

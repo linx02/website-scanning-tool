@@ -65,7 +65,7 @@ public class SeoScannerTest {
     }
 
     @Test
-    public void testCrawl_MetaScenarios() {
+    public void testScan_MetaScenarios() {
         // Title missing, too long, too short
         Asset asset = arrangeTestCase(Map.of(
                 "https://example.com", "<html></html>",
@@ -98,7 +98,7 @@ public class SeoScannerTest {
     }
 
     @Test
-    public void testCrawl_MissingFiles() {
+    public void testScan_MissingFiles() {
     }
 
 }
