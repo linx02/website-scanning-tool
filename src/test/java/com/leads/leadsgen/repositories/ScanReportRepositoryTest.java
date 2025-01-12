@@ -2,6 +2,7 @@ package com.leads.leadsgen.repositories;
 
 import com.leads.leadsgen.models.Asset;
 import com.leads.leadsgen.models.ScanReport;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,10 +15,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ScanReportRepositoryTest {
 
     @Autowired
-    private ScanReportRepository scanReportRepository;
+    private AssetRepository assetRepository;
 
     @Autowired
-    private AssetRepository assetRepository;
+    private ScanReportRepository scanReportRepository;
+
+    @BeforeEach
+    void setUp() {
+        scanReportRepository.deleteAll();
+        assetRepository.deleteAll();
+    }
 
     @Test
     public void testFindByAssetDomain() {
