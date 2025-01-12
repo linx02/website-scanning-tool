@@ -9,4 +9,10 @@ public class CrawlerException extends Exception {
         super(message, cause);
     }
 
+    public static class Timeout extends CrawlerException {
+        public Timeout(String message) {
+            super(message);
+        }
+    }
+
 }

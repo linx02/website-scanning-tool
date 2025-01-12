@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,14 +30,18 @@ public class CrawlService {
     }
 
     public void crawlDomains(List<String> domains) {
-        domains.forEach(this::crawlDomain);
+        domains.forEach(domain -> {
+            Thread thread = new Thread(() -> crawlDomain(domain));
+            thread.start();
+        });
     }
 
     private void crawlDomain(String domain) {
         try {
+            Thread.sleep(1000); // So SSE client can connect
             sseService.broadcastStatus(domain, "Crawling", Map.of());
 
-            Asset asset = crawl("https://" + domain);
+            Asset asset = crawlWithTimeout("https://" + domain, 10, TimeUnit.SECONDS);
 
             Set<String> uniqueUrls = new LinkedHashSet<>(asset.getUrls());
             asset.setUrls(new ArrayList<>(uniqueUrls));
@@ -47,8 +52,13 @@ public class CrawlService {
             }
 
             assetRepository.save(asset);
-            sseService.broadcastStatus(domain, "Completed", Map.of("emailsFound", String.valueOf(asset.getEmails().size())));
-        } catch (Exception e) {
+            sseService.broadcastStatus(domain, "Completed", Map.of("suggestedEmail", getSuggestedEmail(asset)));
+        } catch (CrawlerException.Timeout e) {
+            Asset failedAsset = new Asset(domain, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), null, null);
+            assetRepository.save(failedAsset);
+            sseService.broadcastStatus(domain, "Timeout", Map.of());
+        }
+        catch (Exception e) {
             Asset failedAsset = new Asset(domain, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), null, null);
             assetRepository.save(failedAsset);
             sseService.broadcastStatus(domain, "Error", Map.of("error", e.getMessage()));
@@ -65,6 +75,12 @@ public class CrawlService {
         Map<String, String> htmlContents = new HashMap<>();
 
         for (String url_ : urls) {
+
+            if (Thread.currentThread().isInterrupted()) {
+                System.err.println("Thread was interrupted. Aborting crawl for URL: " + url);
+                break;
+            }
+
             try {
                 System.out.println("Processing URL: " + url_);
                 Map<String, String> html = httpClient.getHtml(url_);
@@ -91,6 +107,24 @@ public class CrawlService {
                 null,
                 htmlContents
         );
+    }
+
+    public Asset crawlWithTimeout(String url, long timeout, TimeUnit unit) throws CrawlerException {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        try {
+            // Submit the crawl task to the executor
+            Future<Asset> future = executor.submit(() -> crawl(url));
+
+            // Wait for the result with the specified timeout
+            return future.get(timeout, unit);
+        } catch (TimeoutException te) {
+            throw new CrawlerException.Timeout("Crawl timed out for URL: " + url);
+        } catch (ExecutionException | InterruptedException e) {
+            // Wrap and rethrow exceptions from the crawl method
+            throw new CrawlerException("Error during crawl for URL: " + url, e);
+        } finally {
+            executor.shutdownNow();  // Ensure executor is properly shut down
+        }
     }
 
     private List<String> getUrls(String url) {
@@ -242,5 +276,54 @@ public class CrawlService {
 
     private String getDomainFromUrl(String url) {
         return url.replace("http://", "").replace("https://", "").split("/")[0];
+    }
+
+    /**
+     * Suggest an email based on priority:
+     * 1) info@domain
+     * 2) anything@domain
+     * 3) info@anything
+     * 4) first email if none matched
+     */
+    private String getSuggestedEmail(Asset asset) {
+        List<String> emails = asset.getEmails();
+        if (emails.isEmpty()) {
+            return null;
+        }
+
+        String domainNoWWW = asset.getDomain().replace("www.", "").toLowerCase();
+
+        String exactInfoDomain = "info@" + domainNoWWW;
+
+        String anyDomainEmail = null;
+        String infoAnyEmail = null;
+        String firstEmail = emails.getFirst(); // fallback
+
+        for (String email : emails) {
+            String lowerEmail = email.toLowerCase().trim();
+
+            // info@domain
+            if (lowerEmail.equals(exactInfoDomain)) {
+                return email;
+            }
+
+            // anything@domain
+            if (anyDomainEmail == null && lowerEmail.endsWith("@" + domainNoWWW)) {
+                anyDomainEmail = email;
+            }
+
+            // info@anything
+            if (infoAnyEmail == null && lowerEmail.startsWith("info@")) {
+                infoAnyEmail = email;
+            }
+        }
+
+        if (anyDomainEmail != null) {
+            return anyDomainEmail;
+        }
+        if (infoAnyEmail != null) {
+            return infoAnyEmail;
+        }
+        return firstEmail;
     }
 }

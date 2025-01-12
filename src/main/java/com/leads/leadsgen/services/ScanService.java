@@ -34,11 +34,15 @@ public class ScanService {
     }
 
     public void scanDomains(List<String> domains, List<String> scanners) {
-        domains.forEach(domain -> scanDomain(domain, scanners));
+        domains.forEach(domain -> {
+            Thread thread = new Thread(() -> scanDomain(domain, scanners));
+            thread.start();
+        });
     }
 
     private void scanDomain(String domain, List<String> scanners) {
         try {
+            Thread.sleep(1000); // So client can connect
             sseService.broadcastStatus(domain, "Scanning", Map.of());
 
             Asset asset = assetRepository.findByDomain(domain)
@@ -54,9 +58,9 @@ public class ScanService {
                 System.out.println("Scan report: " + report);
 
                 scanReportRepository.save(report);
-            }
 
-            sseService.broadcastStatus(domain, "Completed", Map.of());
+                sseService.broadcastStatus(domain, "Scanned", Map.of("flagged", report.isFlagged() ? "yes" : "no"));
+            }
         } catch (Exception e) {
             sseService.broadcastStatus(domain, "Error", Map.of("error", e.getMessage()));
         }
