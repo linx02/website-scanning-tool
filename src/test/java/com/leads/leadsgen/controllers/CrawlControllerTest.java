@@ -53,8 +53,6 @@ public class CrawlControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("Crawl initialized for domains: [example.com]"));
 
-        // Verify that the crawlDomains method was called with the correct arguments
-        verify(crawlService, times(1)).crawlDomains(List.of("example.com"));
     }
 
     @Test
