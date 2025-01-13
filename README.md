@@ -40,3 +40,4 @@ Filerna som ligger i resources/static är byggda och exporterade från ett Next.
 ![Klassdiagram](./class_diagram.png)
 
 ### Användningsfall
+![Användningsfall](./use_case_diagram.png)

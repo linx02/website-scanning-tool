@@ -1,0 +1,26 @@
+@startuml
+' Define Actor
+actor User as user
+actor Recipient as recipient
+
+' System Boundary
+rectangle {
+    usecase "Search Query"
+    usecase "Crawl Websites"
+    usecase "Scan Domains"
+    usecase "Send Emails"
+}
+
+' Relationships
+user --> "Search Query"
+user --> "Crawl Websites"
+user --> "Scan Domains"
+user --> "Send Emails"
+
+"Crawl Websites" --> "Scan Domains" : <<depends on>>
+"Search Query" --> "Crawl Websites" : <<depends on>>
+
+"Send Emails" --> recipient : <<sends to>>
+"Crawl Websites" --> "Send Emails" : <<depends on>>
+"Scan Domains" --> "Send Emails" : <<extends>>
+@enduml
