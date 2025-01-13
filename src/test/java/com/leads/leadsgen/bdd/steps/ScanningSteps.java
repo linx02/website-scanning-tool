@@ -1,9 +1,9 @@
 package com.leads.leadsgen.bdd.steps;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.leads.leadsgen.models.Asset;
-import com.leads.leadsgen.repositories.AssetRepository;
-import com.leads.leadsgen.services.HttpClient;
+import com.leads.leadsgen.model.Asset;
+import com.leads.leadsgen.repository.AssetRepository;
+import com.leads.leadsgen.service.HttpClient;
 import io.cucumber.java.en.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

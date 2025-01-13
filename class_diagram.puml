@@ -1,0 +1,144 @@
+@startuml
+class CorsConfig {
+    + corsFilter()
+}
+
+class AssetController {
+    + getAssets(): ResponseEntity<List<Asset>>
+    + getReports(): ResponseEntity<List<ScanReport>>
+}
+
+class CrawlController {
+    + crawl(): ResponseEntity<String>
+    + streamStatus(): SseEmitter
+}
+
+class ScanController {
+    + scan(): ResponseEntity<String>
+    + streamStatus(): SseEmitter
+}
+
+class SearchEngineController {
+    + search(): ResponseEntity<List<String>>
+}
+
+class CrawlerException extends Exception {
+    + CrawlerException()
+}
+
+class ScannerException extends Exception {
+    + ScannerException()
+}
+
+class Asset {
+    - id: String
+    - domain: String
+    - urls: String
+    - emails: String
+    - phones: String
+    - scannedByJson: String
+    - emailed: boolean
+    - scannedBy: List<Map<String, String>>
+    - htmlContents: Map<String, String>
+    - createdAt: Date
+    - updatedAt: Date
+}
+
+class ScanReport {
+    - id: String
+    - report: String
+    - asset: Asset
+    - flagged: boolean
+    - createdAt: Date
+}
+
+interface AssetRepository {
+    + findByDomain(): Optional<Asset>
+}
+
+interface ScanReportRepository {
+    + findByAssetDomain(): Optional<ScanReport>
+}
+
+abstract class Scanner {
+    - name: String
+    + scan(): ScanReport
+}
+
+class SeoScanner extends Scanner {
+    + scan(): ScanReport
+}
+
+class TrackerConsentScanner extends Scanner {
+    + scan(): ScanReport
+}
+
+class DnsScanner {
+}
+
+interface HttpClient {
+    + get(): String
+    + getHtml(): Map<String, String>
+}
+
+class HttpClientImpl implements HttpClient {
+    + get(): String
+    + getHtml(): Map<String, String>
+}
+
+class CrawlService {
+    + crawl(): Asset throws CrawlerException
+    + crawlWithTimeout(): Asset throws CrawlerException
+    + crawlDomains()
+}
+
+class ScanService {
+    + scanDomains()
+}
+
+class SearchEngineService {
+    + search(): List<String>
+}
+
+class SseService {
+    + registerClient(): SseEmitter
+    + broadcastStatus()
+}
+
+class EmailService {
+}
+
+class LeadsgenApplication {
+    + main()
+}
+
+' Associations and dependencies
+AssetController --> AssetRepository : uses
+AssetController --> ScanReportRepository : uses
+AssetController --> SseService : uses
+
+CrawlController --> CrawlService : uses
+ScanController --> ScanService : uses
+ScanController --> SseService : uses
+SearchEngineController --> SearchEngineService : uses
+
+ScanReport --> Asset : associates
+
+CrawlService --> HttpClient : uses
+CrawlService --> AssetRepository : uses
+CrawlService --> SseService : uses
+
+ScanService --> ScanReportRepository : uses
+ScanService --> SeoScanner : uses
+ScanService --> TrackerConsentScanner : uses
+ScanService --> SseService : uses
+
+SeoScanner --> CrawlService : uses
+
+LeadsgenApplication ..> CorsConfig
+LeadsgenApplication ..> CrawlController
+LeadsgenApplication ..> ScanController
+LeadsgenApplication ..> SearchEngineController
+
+
+@enduml

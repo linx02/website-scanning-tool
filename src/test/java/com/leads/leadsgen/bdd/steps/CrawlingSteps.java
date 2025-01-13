@@ -1,7 +1,7 @@
 package com.leads.leadsgen.bdd.steps;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.leads.leadsgen.services.HttpClient;
+import com.leads.leadsgen.service.HttpClient;
 import io.cucumber.java.en.*;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
