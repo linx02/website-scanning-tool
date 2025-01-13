@@ -33,3 +33,10 @@ Navigera sedan till `http://localhost:8080` för att se frontend.
 
 ## Frontend
 Filerna som ligger i resources/static är byggda och exporterade från ett Next.js-projekt.
+
+## Diagram
+
+### Klassdiagram
+![Klassdiagram](./class_diagram.png)
+
+### Användningsfall
