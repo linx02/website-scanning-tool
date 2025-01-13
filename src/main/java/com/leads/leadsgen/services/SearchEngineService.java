@@ -14,6 +14,13 @@ import java.util.Set;
 @Service
 public class SearchEngineService {
 
+    /**
+     * Search for websites based on the given query and length.
+     *
+     * @param query  the search query
+     * @param length the number of results to return (must be a multiple of 100)
+     * @return a list of domains
+     */
     public List<String> search(String query, int length) {
         if (length % 100 != 0 || length <= 0) {
             throw new IllegalArgumentException("Length must be a multiple of 100 and greater than 0");
@@ -45,6 +52,12 @@ public class SearchEngineService {
         return new ArrayList<>(domains);
     }
 
+    /**
+     * Extracts the domain from a given URL.
+     *
+     * @param url the URL to extract the domain from
+     * @return the domain
+     */
     private String extractDomain(String url) {
         try {
             URL parsedUrl = new URL(url);

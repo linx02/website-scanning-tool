@@ -29,6 +29,10 @@ public class CrawlService {
         this.httpClient = httpClient;
     }
 
+    /**
+     * Crawl a list of domains concurrently
+     * @param domains List of domains to crawl
+     */
     public void crawlDomains(List<String> domains) {
         domains.forEach(domain -> {
             Thread thread = new Thread(() -> crawlDomain(domain));
@@ -36,6 +40,10 @@ public class CrawlService {
         });
     }
 
+    /**
+     * Crawl a single domain
+     * @param domain Domain to crawl
+     */
     private void crawlDomain(String domain) {
         try {
             Thread.sleep(1000); // So SSE client can connect
@@ -65,6 +73,12 @@ public class CrawlService {
         }
     }
 
+    /**
+     * Crawl a single domain and return the asset
+     * @param url URL to crawl
+     * @return Asset object representing the crawled domain
+     * @throws CrawlerException if an error occurs during the crawl
+     */
     public Asset crawl(String url) throws CrawlerException {
         List<String> urls = getUrls(url);
 
@@ -109,6 +123,14 @@ public class CrawlService {
         );
     }
 
+    /**
+     * Crawl a single domain with a specified timeout
+     * @param url URL to crawl
+     * @param timeout Timeout duration
+     * @param unit Timeout unit
+     * @return Asset object representing the crawled domain
+     * @throws CrawlerException if an error occurs during the crawl
+     */
     public Asset crawlWithTimeout(String url, long timeout, TimeUnit unit) throws CrawlerException {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         try {
@@ -127,6 +149,11 @@ public class CrawlService {
         }
     }
 
+    /**
+     * Get a list of URLs to crawl for a given domain
+     * @param url URL to crawl
+     * @return List of URLs to crawl
+     */
     private List<String> getUrls(String url) {
         List<String> urls = new ArrayList<>();
         List<String> sitemapUrls = getSitemap(url);
@@ -147,6 +174,11 @@ public class CrawlService {
         return deduplicateUrls(urls);
     }
 
+    /**
+     * Remove duplicate URLs from a list
+     * @param urls List of URLs
+     * @return List of unique URLs
+     */
     private List<String> deduplicateUrls(List<String> urls) {
         Set<String> uniqueUrls = new LinkedHashSet<>();
         for (String url : urls) {
@@ -159,6 +191,11 @@ public class CrawlService {
         return new ArrayList<>(uniqueUrls);
     }
 
+    /**
+     * Get sitemap URLs for a given domain
+     * @param url Domain URL
+     * @return List of sitemap URLs
+     */
     private List<String> getSitemap(String url) {
         List<String> sitemapUrls = new ArrayList<>();
         Set<String> visitedSitemaps = new HashSet<>();
@@ -210,6 +247,11 @@ public class CrawlService {
         return sitemapUrls;
     }
 
+    /**
+     * Get disallowed URLs from robots.txt for a given domain
+     * @param url Domain URL
+     * @return List of disallowed URLs
+     */
     private List<String> getDisallowedUrls(String url) {
         List<String> disallowedUrls = new ArrayList<>();
         try {
@@ -224,6 +266,11 @@ public class CrawlService {
         return disallowedUrls;
     }
 
+    /**
+     * Get links from html from a given URL
+     * @param url URL to fetch links from
+     * @return List of page links
+     */
     private List<String> getPageLinks(String url) {
         List<String> links = new ArrayList<>();
         try {
@@ -244,6 +291,11 @@ public class CrawlService {
         return links;
     }
 
+    /**
+     * Get emails from HTML content
+     * @param htmlContents Map of URLs to HTML content
+     * @return Set of emails
+     */
     private Set<String> getEmails(Map<String, String> htmlContents) {
         Set<String> emails = new HashSet<>();
         Pattern emailPattern = Pattern.compile("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
@@ -256,6 +308,11 @@ public class CrawlService {
         return emails;
     }
 
+    /**
+     * Get phone numbers from HTML content
+     * @param htmlContents Map of URLs to HTML content
+     * @return Set of phone numbers
+     */
     private Set<String> getPhones(Map<String, String> htmlContents) {
         Set<String> phones = new HashSet<>();
         Pattern phonePattern = Pattern.compile(
@@ -274,6 +331,11 @@ public class CrawlService {
         return phones;
     }
 
+    /**
+     * Get domain from URL
+     * @param url URL to extract domain from
+     * @return Domain
+     */
     private String getDomainFromUrl(String url) {
         return url.replace("http://", "").replace("https://", "").split("/")[0];
     }
@@ -284,6 +346,8 @@ public class CrawlService {
      * 2) anything@domain
      * 3) info@anything
      * 4) first email if none matched
+     * @param asset Asset object
+     * @return Suggested email
      */
     private String getSuggestedEmail(Asset asset) {
         List<String> emails = asset.getEmails();

@@ -13,6 +13,8 @@ public class SseService {
 
     /**
      * Registers a new SSE client and returns the emitter.
+     *
+     * @return  SseEmitter instance
      */
     public SseEmitter registerClient() {
         SseEmitter emitter = new SseEmitter();
@@ -40,6 +42,10 @@ public class SseService {
 
     /**
      * Sends a status update to all connected SSE clients.
+     *
+     * @param domain          Domain being scanned
+     * @param status          Current status
+     * @param additionalData  Additional data to send
      */
     public void broadcastStatus(String domain, String status, Map<String, String> additionalData) {
         List<String> deadEmitterIds = new ArrayList<>();

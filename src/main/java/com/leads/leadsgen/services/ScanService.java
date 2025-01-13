@@ -33,6 +33,12 @@ public class ScanService {
         this.sseService = sseService;
     }
 
+    /**
+     * Scan a list of domains concurrently
+     *
+     * @param domains   List of domains to scan
+     * @param scanners  List of scanners to use
+     */
     public void scanDomains(List<String> domains, List<String> scanners) {
         domains.forEach(domain -> {
             Thread thread = new Thread(() -> scanDomain(domain, scanners));
@@ -40,6 +46,12 @@ public class ScanService {
         });
     }
 
+    /**
+     * Scan a single domain
+     *
+     * @param domain    Domain to scan
+     * @param scanners  List of scanners to use
+     */
     private void scanDomain(String domain, List<String> scanners) {
         try {
             Thread.sleep(1000); // So client can connect

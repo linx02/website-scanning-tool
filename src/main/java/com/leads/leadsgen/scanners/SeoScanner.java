@@ -22,6 +22,12 @@ public class SeoScanner extends Scanner {
         super("SeoScanner");
     }
 
+    /**
+     * Scan the SEO of an asset
+     *
+     * @param asset Asset to scan
+     * @return Scan report
+     */
     @Override
     public ScanReport scan(Asset asset) {
 
@@ -113,6 +119,14 @@ public class SeoScanner extends Scanner {
         return new ScanReport(reportBuilder.toString(), asset, flagged);
     }
 
+    /**
+     * Scan the HTML content of a page
+     *
+     * @param htmlContent HTML content to scan
+     * @param issues      List to store issues
+     * @param url         URL of the page
+     * @return Array containing total checks and well optimized checks
+     */
     private int[] scanHtmlContent(String htmlContent, List<String> issues, String url) {
         int totalChecks = 0;
         int wellOptimizedChecks = 0;
@@ -152,6 +166,12 @@ public class SeoScanner extends Scanner {
         return new int[]{totalChecks, wellOptimizedChecks};
     }
 
+    /**
+     * Check for broken links in the sitemap
+     *
+     * @param sitemapUrls List of URLs in the sitemap
+     * @return List of broken links
+     */
     private List<String> checkBrokenLinksInSitemap(List<String> sitemapUrls) {
         List<String> brokenLinks = new ArrayList<>();
         for (String url : sitemapUrls) {
@@ -162,6 +182,12 @@ public class SeoScanner extends Scanner {
         return brokenLinks;
     }
 
+    /**
+     * Check if a link is broken
+     *
+     * @param url URL to check
+     * @return True if the link is broken, false otherwise
+     */
     private boolean isLinkBroken(String url) {
         try {
             HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
@@ -175,6 +201,13 @@ public class SeoScanner extends Scanner {
         }
     }
 
+    /**
+     * Calculate the SEO score
+     *
+     * @param totalChecks          Total number of checks
+     * @param wellOptimizedChecks  Number of well optimized checks
+     * @return SEO score
+     */
     private int calculateScore(int totalChecks, int wellOptimizedChecks) {
         if (totalChecks == 0) {
             return 100;
@@ -182,6 +215,13 @@ public class SeoScanner extends Scanner {
         return (wellOptimizedChecks * 100) / totalChecks;
     }
 
+    /**
+     * Check for missing files like robots.txt and sitemap.xml
+     *
+     * @param asset  Asset to check
+     * @param issues List to store issues
+     * @return Array containing total checks and well optimized checks
+     */
     private int[] checkMissingFiles(Asset asset, List<String> issues) {
         int totalChecks = 2; // sitemap.xml & robots.txt
         int wellOptimizedChecks = 0;
@@ -201,6 +241,13 @@ public class SeoScanner extends Scanner {
         return new int[]{totalChecks, wellOptimizedChecks};
     }
 
+    /**
+     * Check the title tag of a page
+     *
+     * @param html   HTML content of the page
+     * @param issues List to store issues
+     * @return Array containing total checks and well optimized checks
+     */
     private int[] checkTitleTag(String html, List<String> issues) {
         int totalChecks = 1;
         int wellOptimizedChecks = 0;
@@ -224,6 +271,13 @@ public class SeoScanner extends Scanner {
         return new int[]{totalChecks, wellOptimizedChecks};
     }
 
+    /**
+     * Check the meta description of a page
+     *
+     * @param html   HTML content of the page
+     * @param issues List to store issues
+     * @return Array containing total checks and well optimized checks
+     */
     private int[] checkMetaDescription(String html, List<String> issues) {
         int totalChecks = 1;
         int wellOptimizedChecks = 0;
@@ -247,6 +301,13 @@ public class SeoScanner extends Scanner {
         return new int[]{totalChecks, wellOptimizedChecks};
     }
 
+    /**
+     * Check the heading tags of a page
+     *
+     * @param html   HTML content of the page
+     * @param issues List to store issues
+     * @return Array containing total checks and well optimized checks
+     */
     private int[] checkHeadingTags(String html, List<String> issues) {
         int totalChecks = 1;
         int wellOptimizedChecks = 0;
@@ -268,6 +329,13 @@ public class SeoScanner extends Scanner {
         return new int[]{totalChecks, wellOptimizedChecks};
     }
 
+    /**
+     * Check the alt tags of images in the page
+     *
+     * @param html   HTML content of the page
+     * @param issues List to store issues
+     * @return Array containing total checks and well optimized checks
+     */
     private int[] checkImageAltTags(String html, List<String> issues) {
         int totalChecks = 0;
         int wellOptimizedChecks = 0;
@@ -297,6 +365,13 @@ public class SeoScanner extends Scanner {
         return new int[]{totalChecks, wellOptimizedChecks};
     }
 
+    /**
+     * Check for schema.org markup in the page
+     *
+     * @param html   HTML content of the page
+     * @param issues List to store issues
+     * @return Array containing total checks and well optimized checks
+     */
     private int[] checkSchemaMarkup(String html, List<String> issues) {
         int totalChecks = 1;
         int wellOptimizedChecks = 0;
@@ -310,6 +385,13 @@ public class SeoScanner extends Scanner {
         return new int[]{totalChecks, wellOptimizedChecks};
     }
 
+    /**
+     * Check for Open Graph tags in the page
+     *
+     * @param html   HTML content of the page
+     * @param issues List to store issues
+     * @return Array containing total checks and well optimized checks
+     */
     private int[] checkOpenGraphTags(String html, List<String> issues) {
         int totalChecks = 1;
         int wellOptimizedChecks = 0;
@@ -326,6 +408,13 @@ public class SeoScanner extends Scanner {
         return new int[]{totalChecks, wellOptimizedChecks};
     }
 
+    /**
+     * Check for Twitter Card tags in the page
+     *
+     * @param html   HTML content of the page
+     * @param issues List to store issues
+     * @return Array containing total checks and well optimized checks
+     */
     private int[] checkTwitterCardTags(String html, List<String> issues) {
         int totalChecks = 1;
         int wellOptimizedChecks = 0;
@@ -342,6 +431,14 @@ public class SeoScanner extends Scanner {
         return new int[]{totalChecks, wellOptimizedChecks};
     }
 
+    /**
+     * Check for broken links in the HTML content
+     *
+     * @param html   HTML content of the page
+     * @param issues List to store issues
+     * @param pageUrl URL of the page
+     * @return Array containing total checks and well optimized checks
+     */
     private int[] checkBrokenLinksInHtml(String html, List<String> issues, String pageUrl) {
         int totalChecks = 0;
         int wellOptimizedChecks = 0;

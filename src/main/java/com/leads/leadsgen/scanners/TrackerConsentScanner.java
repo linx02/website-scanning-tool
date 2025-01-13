@@ -22,6 +22,12 @@ public class TrackerConsentScanner extends Scanner {
         super("TrackerConsentScanner");
     }
 
+    /**
+     * Scan for trackers firing on page load without user interaction
+     *
+     * @param asset Asset to scan
+     * @return ScanReport
+     */
     @Override
     public ScanReport scan(Asset asset) {
         List<String> foundTrackers = null;
