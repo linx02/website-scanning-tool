@@ -17,7 +17,7 @@ public class SseService {
      * @return  SseEmitter instance
      */
     public SseEmitter registerClient() {
-        SseEmitter emitter = new SseEmitter();
+        SseEmitter emitter = new SseEmitter(0L);
         String emitterId = UUID.randomUUID().toString();
         emitters.put(emitterId, emitter);
 
@@ -36,6 +36,7 @@ public class SseService {
 
         emitter.onCompletion(() -> emitters.remove(emitterId));
         emitter.onTimeout(() -> emitters.remove(emitterId));
+        emitter.onError((e) -> emitters.remove(emitterId));
 
         return emitter;
     }
@@ -49,6 +50,7 @@ public class SseService {
      */
     public void broadcastStatus(String domain, String status, Map<String, String> additionalData) {
         List<String> deadEmitterIds = new ArrayList<>();
+        System.out.println("Broadcasting status: " + status + " for domain: " + domain);
 
         for (Map.Entry<String, SseEmitter> entry : emitters.entrySet()) {
             String emitterId = entry.getKey();

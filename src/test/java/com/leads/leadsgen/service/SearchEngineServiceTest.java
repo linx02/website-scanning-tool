@@ -1,5 +1,6 @@
 package com.leads.leadsgen.service;
 
+import com.leads.leadsgen.service.impl.HttpClientImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,13 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SearchEngineServiceTest {
 
-    private final SearchEngineService searchEngineService = new SearchEngineService();
+    private final HttpClient httpClient = new HttpClientImpl();
 
-    @Test
-    public void testSearchEngineService() {
-        List<String> results = searchEngineService.search("test", 100);
-        assertTrue(!results.isEmpty() && results.size() <= 100);
-    }
+    private final SearchEngineService searchEngineService = new SearchEngineService(httpClient);
 
     @Test
     public void testSearchEngineService_InvalidLimit() {

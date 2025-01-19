@@ -8,6 +8,7 @@ import com.leads.leadsgen.scanner.SeoScanner;
 import com.leads.leadsgen.scanner.TrackerConsentScanner;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,10 +41,18 @@ public class ScanService {
      * @param scanners  List of scanners to use
      */
     public void scanDomains(List<String> domains, List<String> scanners) {
-        domains.forEach(domain -> {
-            Thread thread = new Thread(() -> scanDomain(domain, scanners));
-            thread.start();
-        });
+
+        // TrackerConsentScanner cannot run concurrently due to resource constraints
+        if (scanners.getFirst().equals("TrackerConsentScanner")) {
+            domains.forEach(domain -> {
+                scanDomain(domain, scanners);
+            });
+        } else {
+            domains.forEach(domain -> {
+                Thread thread = new Thread(() -> scanDomain(domain, scanners));
+                thread.start();
+            });
+        }
     }
 
     /**
@@ -69,11 +78,22 @@ public class ScanService {
 
                 System.out.println("Scan report: " + report);
 
+                List<Map<String, String>> scannedBy = asset.getScannedBy();
+
+                if (scannedBy == null) {
+                    scannedBy = new ArrayList<>();
+                }
+
+                scannedBy.add(Map.of("scanner", scanner, "datetime", report.getCreatedAt().toString()));
+                asset.setScannedBy(scannedBy);
+                assetRepository.save(asset);
+
                 scanReportRepository.save(report);
 
                 sseService.broadcastStatus(domain, "Scanned", Map.of("flagged", report.isFlagged() ? "yes" : "no"));
             }
         } catch (Exception e) {
+            System.out.println("Error scanning domain: " + domain + " - " + e.getMessage());
             sseService.broadcastStatus(domain, "Error", Map.of("error", e.getMessage()));
         }
     }

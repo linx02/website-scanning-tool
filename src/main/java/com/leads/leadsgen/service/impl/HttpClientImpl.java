@@ -15,7 +15,6 @@ public class HttpClientImpl implements HttpClient {
 
     @Override
     public String get(String url) throws Exception {
-        System.out.println("Fetching: " + url);
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestMethod("GET");
 
@@ -32,7 +31,6 @@ public class HttpClientImpl implements HttpClient {
 
     @Override
     public Map<String, String> getHtml(String url) throws Exception {
-        System.out.println("Fetching HTML content from URL: " + url);
         Map<String, String> htmlContent = new HashMap<>();
         String html = get(url);
         htmlContent.put(url, html);

@@ -49,7 +49,7 @@ public class CrawlService {
             Thread.sleep(1000); // So SSE client can connect
             sseService.broadcastStatus(domain, "Crawling", Map.of());
 
-            Asset asset = crawlWithTimeout("https://" + domain, 10, TimeUnit.SECONDS);
+            Asset asset = crawlWithTimeout("https://" + domain, 30, TimeUnit.SECONDS);
 
             Set<String> uniqueUrls = new LinkedHashSet<>(asset.getUrls());
             asset.setUrls(new ArrayList<>(uniqueUrls));
@@ -96,7 +96,6 @@ public class CrawlService {
             }
 
             try {
-                System.out.println("Processing URL: " + url_);
                 Map<String, String> html = httpClient.getHtml(url_);
                 if (!html.isEmpty() && html.get(url_) != null) {
                     htmlContents.put(url_, html.get(url_));
@@ -134,18 +133,15 @@ public class CrawlService {
     public Asset crawlWithTimeout(String url, long timeout, TimeUnit unit) throws CrawlerException {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         try {
-            // Submit the crawl task to the executor
             Future<Asset> future = executor.submit(() -> crawl(url));
 
-            // Wait for the result with the specified timeout
             return future.get(timeout, unit);
         } catch (TimeoutException te) {
             throw new CrawlerException.Timeout("Crawl timed out for URL: " + url);
         } catch (ExecutionException | InterruptedException e) {
-            // Wrap and rethrow exceptions from the crawl method
             throw new CrawlerException("Error during crawl for URL: " + url, e);
         } finally {
-            executor.shutdownNow();  // Ensure executor is properly shut down
+            executor.shutdownNow();
         }
     }
 
@@ -316,16 +312,14 @@ public class CrawlService {
     private Set<String> getPhones(Map<String, String> htmlContents) {
         Set<String> phones = new HashSet<>();
         Pattern phonePattern = Pattern.compile(
-                "(?:\\+\\d{1,3}[-.\\s]?)?" +          // Optional international code, e.g., +46
-                        "(?:\\(\\d{1,4}\\)|\\d{1,4})?" +      // Optional area code in parentheses
-                        "\\d{3,4}[-.\\s]?\\d{2,4}[-.\\s]?\\d{2,4}" // Main phone number pattern
+                "(?:\\+\\d{1,3}[-.\\s]?)?" +
+                        "(?:\\(\\d{1,4}\\)|\\d{1,4})?" +
+                        "\\d{3,4}[-.\\s]?\\d{2,4}[-.\\s]?\\d{2,4}"
         );
         for (String html : htmlContents.values()) {
             Matcher matcher = phonePattern.matcher(html);
-            System.out.println("Processing html: " + html);
             while (matcher.find()) {
                 phones.add(matcher.group());
-                System.out.println("Phone found: " + matcher.group());
             }
         }
         return phones;
