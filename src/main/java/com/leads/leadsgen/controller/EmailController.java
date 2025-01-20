@@ -1,6 +1,5 @@
 package com.leads.leadsgen.controller;
 
-import com.leads.leadsgen.model.EmailTemplate;
 import com.leads.leadsgen.service.EmailService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

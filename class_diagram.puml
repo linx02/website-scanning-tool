@@ -18,6 +18,10 @@ class ScanController {
     + streamStatus(): SseEmitter
 }
 
+class EmailController {
+    + sendEmails(): ResponseEntity<Map<String, String>>
+}
+
 class SearchEngineController {
     + search(): ResponseEntity<List<String>>
 }
@@ -106,6 +110,7 @@ class SseService {
 }
 
 class EmailService {
+    + sendEmails()
 }
 
 class LeadsgenApplication {
@@ -115,12 +120,13 @@ class LeadsgenApplication {
 ' Associations and dependencies
 AssetController --> AssetRepository : uses
 AssetController --> ScanReportRepository : uses
-AssetController --> SseService : uses
 
 CrawlController --> CrawlService : uses
+CrawlController --> SseService : uses
 ScanController --> ScanService : uses
 ScanController --> SseService : uses
 SearchEngineController --> SearchEngineService : uses
+EmailController --> EmailService : uses
 
 ScanReport --> Asset : associates
 
@@ -128,6 +134,8 @@ CrawlService --> HttpClient : uses
 CrawlService --> AssetRepository : uses
 CrawlService --> SseService : uses
 
+
+ScanService --> AssetRepository : uses
 ScanService --> ScanReportRepository : uses
 ScanService --> SeoScanner : uses
 ScanService --> TrackerConsentScanner : uses
@@ -139,6 +147,14 @@ LeadsgenApplication ..> CorsConfig
 LeadsgenApplication ..> CrawlController
 LeadsgenApplication ..> ScanController
 LeadsgenApplication ..> SearchEngineController
+LeadsgenApplication ..> EmailController
+LeadsgenApplication ..> AssetController
 
+SearchEngineService --> HttpClient : uses
+
+interface JpaRepository
+
+AssetRepository <|-- JpaRepository
+ScanReportRepository <|-- JpaRepository
 
 @enduml
